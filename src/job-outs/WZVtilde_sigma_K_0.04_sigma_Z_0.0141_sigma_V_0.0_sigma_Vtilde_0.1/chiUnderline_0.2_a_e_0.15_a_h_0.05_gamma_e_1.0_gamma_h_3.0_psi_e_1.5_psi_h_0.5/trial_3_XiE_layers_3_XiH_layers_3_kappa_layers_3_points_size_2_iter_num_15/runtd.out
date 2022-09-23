@@ -1,1 +1,63 @@
 /tmp/slurmd/job22778530/slurm_script: line 19: deactivate: No such file or directory
+Iteration 0
+Elapsed time for kappa 144.9982 sec
+Elapsed time for experts 70.8123 sec
+Elapsed time for households 15.7967 sec
+Iteration 1
+Elapsed time for kappa 107.2579 sec
+Elapsed time for experts 65.1631 sec
+Elapsed time for households 61.9779 sec
+Iteration 2
+Elapsed time for kappa 108.0740 sec
+Elapsed time for experts 62.9767 sec
+Elapsed time for households 58.2868 sec
+Iteration 3
+Elapsed time for kappa 106.1763 sec
+Elapsed time for experts 64.8226 sec
+Elapsed time for households 59.8702 sec
+Iteration 4
+Elapsed time for kappa 106.4967 sec
+Elapsed time for experts 63.0310 sec
+Elapsed time for households 39.2486 sec
+Iteration 5
+Elapsed time for kappa 105.5010 sec
+Elapsed time for experts 11.7319 sec
+Elapsed time for households 57.4616 sec
+Iteration 6
+Elapsed time for kappa 107.5994 sec
+Elapsed time for experts 61.1757 sec
+Elapsed time for households 24.4517 sec
+Iteration 7
+Elapsed time for kappa 114.0799 sec
+Elapsed time for experts 63.1139 sec
+Elapsed time for households 24.0178 sec
+Iteration 8
+Elapsed time for kappa 107.6088 sec
+Elapsed time for experts 63.3799 sec
+Elapsed time for households 58.9580 sec
+Iteration 9
+Elapsed time for kappa 105.8741 sec
+Elapsed time for experts 63.3097 sec
+Elapsed time for households 32.6700 sec
+Iteration 10
+Elapsed time for kappa 72.0702 sec
+Elapsed time for experts 62.6640 sec
+Elapsed time for households 22.1961 sec
+Iteration 11
+Elapsed time for kappa 104.9387 sec
+Elapsed time for experts 61.4545 sec
+Elapsed time for households 39.9817 sec
+Iteration 12
+Elapsed time for kappa 105.9464 sec
+Elapsed time for experts 63.7274 sec
+Elapsed time for households 27.2711 sec
+Iteration 13
+Elapsed time for kappa 106.8537 sec
+Elapsed time for experts 61.1953 sec
+Elapsed time for households 56.7534 sec
+Iteration 14
+Elapsed time for kappa 107.4050 sec
+Elapsed time for experts 62.8252 sec
+Elapsed time for households 55.0687 sec
+Elapsed time for training 3147.3781 sec
+90000 90000 90000 90000
