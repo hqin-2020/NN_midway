@@ -1,0 +1,62 @@
+/tmp/slurmd/job22783624/slurm_script: line 19: deactivate: No such file or directory
+Iteration 0
+Elapsed time for kappa 149.8979 sec
+Elapsed time for experts 72.0084 sec
+Elapsed time for households 15.7847 sec
+Iteration 1
+Elapsed time for kappa 108.7405 sec
+Elapsed time for experts 65.7267 sec
+Elapsed time for households 60.8953 sec
+Iteration 2
+Elapsed time for kappa 114.2660 sec
+Elapsed time for experts 64.9737 sec
+Elapsed time for households 17.3225 sec
+Iteration 3
+Elapsed time for kappa 112.2724 sec
+Elapsed time for experts 63.6378 sec
+Elapsed time for households 57.7965 sec
+Iteration 4
+Elapsed time for kappa 110.4255 sec
+Elapsed time for experts 50.1199 sec
+Elapsed time for households 20.7810 sec
+Iteration 5
+Elapsed time for kappa 110.8219 sec
+Elapsed time for experts 40.9250 sec
+Elapsed time for households 25.1538 sec
+Iteration 6
+Elapsed time for kappa 106.6993 sec
+Elapsed time for experts 47.4652 sec
+Elapsed time for households 21.9590 sec
+Iteration 7
+Elapsed time for kappa 108.0840 sec
+Elapsed time for experts 40.5488 sec
+Elapsed time for households 22.6258 sec
+Iteration 8
+Elapsed time for kappa 74.8784 sec
+Elapsed time for experts 30.5487 sec
+Elapsed time for households 19.3415 sec
+Iteration 9
+Elapsed time for kappa 81.4493 sec
+Elapsed time for experts 64.3923 sec
+Elapsed time for households 29.1499 sec
+Iteration 10
+Elapsed time for kappa 61.9465 sec
+Elapsed time for experts 40.5091 sec
+Elapsed time for households 26.5057 sec
+Iteration 11
+Elapsed time for kappa 56.6007 sec
+Elapsed time for experts 64.1540 sec
+Elapsed time for households 21.1830 sec
+Iteration 12
+Elapsed time for kappa 60.3416 sec
+Elapsed time for experts 61.9224 sec
+Elapsed time for households 16.4313 sec
+Iteration 13
+Elapsed time for kappa 118.5423 sec
+Elapsed time for experts 63.0600 sec
+Elapsed time for households 22.4512 sec
+Iteration 14
+Elapsed time for kappa 60.0440 sec
+Elapsed time for experts 32.8014 sec
+Elapsed time for households 10.8634 sec
+Elapsed time for training 2627.1283 sec
