@@ -1,0 +1,63 @@
+/tmp/slurmd/job22778497/slurm_script: line 19: deactivate: No such file or directory
+Iteration 0
+Elapsed time for kappa 147.0371 sec
+Elapsed time for experts 70.7633 sec
+Elapsed time for households 18.0439 sec
+Iteration 1
+Elapsed time for kappa 108.0521 sec
+Elapsed time for experts 63.8602 sec
+Elapsed time for households 12.9469 sec
+Iteration 2
+Elapsed time for kappa 111.0048 sec
+Elapsed time for experts 66.2551 sec
+Elapsed time for households 60.5820 sec
+Iteration 3
+Elapsed time for kappa 106.8453 sec
+Elapsed time for experts 62.3936 sec
+Elapsed time for households 22.0129 sec
+Iteration 4
+Elapsed time for kappa 108.6048 sec
+Elapsed time for experts 65.0270 sec
+Elapsed time for households 58.0956 sec
+Iteration 5
+Elapsed time for kappa 108.0094 sec
+Elapsed time for experts 62.6815 sec
+Elapsed time for households 23.1388 sec
+Iteration 6
+Elapsed time for kappa 86.9945 sec
+Elapsed time for experts 63.7288 sec
+Elapsed time for households 10.5189 sec
+Iteration 7
+Elapsed time for kappa 69.5045 sec
+Elapsed time for experts 63.7201 sec
+Elapsed time for households 16.7644 sec
+Iteration 8
+Elapsed time for kappa 60.8470 sec
+Elapsed time for experts 64.3357 sec
+Elapsed time for households 21.9985 sec
+Iteration 9
+Elapsed time for kappa 107.7389 sec
+Elapsed time for experts 63.5589 sec
+Elapsed time for households 43.3700 sec
+Iteration 10
+Elapsed time for kappa 54.7464 sec
+Elapsed time for experts 64.6366 sec
+Elapsed time for households 52.9912 sec
+Iteration 11
+Elapsed time for kappa 106.1119 sec
+Elapsed time for experts 65.1047 sec
+Elapsed time for households 26.5848 sec
+Iteration 12
+Elapsed time for kappa 63.5865 sec
+Elapsed time for experts 63.0180 sec
+Elapsed time for households 18.5716 sec
+Iteration 13
+Elapsed time for kappa 70.1293 sec
+Elapsed time for experts 65.5615 sec
+Elapsed time for households 30.4407 sec
+Iteration 14
+Elapsed time for kappa 48.3009 sec
+Elapsed time for experts 65.2636 sec
+Elapsed time for households 21.6062 sec
+Elapsed time for training 2766.1877 sec
+90000 90000 90000 90000

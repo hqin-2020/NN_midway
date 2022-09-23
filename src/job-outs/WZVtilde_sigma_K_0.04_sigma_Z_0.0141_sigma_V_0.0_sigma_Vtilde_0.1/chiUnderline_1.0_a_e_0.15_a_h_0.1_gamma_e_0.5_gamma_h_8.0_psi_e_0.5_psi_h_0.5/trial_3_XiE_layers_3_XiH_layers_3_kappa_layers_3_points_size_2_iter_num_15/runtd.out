@@ -1,0 +1,63 @@
+/tmp/slurmd/job22778482/slurm_script: line 19: deactivate: No such file or directory
+Iteration 0
+Elapsed time for kappa 128.2831 sec
+Elapsed time for experts 44.0874 sec
+Elapsed time for households 39.5806 sec
+Iteration 1
+Elapsed time for kappa 90.2580 sec
+Elapsed time for experts 39.6124 sec
+Elapsed time for households 35.9415 sec
+Iteration 2
+Elapsed time for kappa 89.6789 sec
+Elapsed time for experts 36.6891 sec
+Elapsed time for households 35.0396 sec
+Iteration 3
+Elapsed time for kappa 90.0432 sec
+Elapsed time for experts 36.8320 sec
+Elapsed time for households 35.9902 sec
+Iteration 4
+Elapsed time for kappa 86.7768 sec
+Elapsed time for experts 37.2971 sec
+Elapsed time for households 34.5753 sec
+Iteration 5
+Elapsed time for kappa 88.0212 sec
+Elapsed time for experts 37.3488 sec
+Elapsed time for households 35.0658 sec
+Iteration 6
+Elapsed time for kappa 85.8263 sec
+Elapsed time for experts 36.0122 sec
+Elapsed time for households 34.4961 sec
+Iteration 7
+Elapsed time for kappa 94.7806 sec
+Elapsed time for experts 38.2875 sec
+Elapsed time for households 35.4051 sec
+Iteration 8
+Elapsed time for kappa 86.8751 sec
+Elapsed time for experts 38.3006 sec
+Elapsed time for households 34.7994 sec
+Iteration 9
+Elapsed time for kappa 85.2543 sec
+Elapsed time for experts 37.4650 sec
+Elapsed time for households 35.1202 sec
+Iteration 10
+Elapsed time for kappa 83.9120 sec
+Elapsed time for experts 36.7371 sec
+Elapsed time for households 9.9329 sec
+Iteration 11
+Elapsed time for kappa 84.7415 sec
+Elapsed time for experts 36.3735 sec
+Elapsed time for households 34.4498 sec
+Iteration 12
+Elapsed time for kappa 71.1786 sec
+Elapsed time for experts 38.1443 sec
+Elapsed time for households 35.5423 sec
+Iteration 13
+Elapsed time for kappa 86.5521 sec
+Elapsed time for experts 36.8313 sec
+Elapsed time for households 35.4845 sec
+Iteration 14
+Elapsed time for kappa 83.3518 sec
+Elapsed time for experts 36.6479 sec
+Elapsed time for households 35.1178 sec
+Elapsed time for training 2409.7976 sec
+90000 90000 90000 90000

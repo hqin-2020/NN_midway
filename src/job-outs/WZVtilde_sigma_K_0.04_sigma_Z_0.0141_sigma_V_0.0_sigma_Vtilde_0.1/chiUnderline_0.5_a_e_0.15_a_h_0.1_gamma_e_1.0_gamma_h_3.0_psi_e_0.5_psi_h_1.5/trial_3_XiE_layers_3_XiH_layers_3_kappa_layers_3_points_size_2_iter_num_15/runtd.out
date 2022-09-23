@@ -1,0 +1,62 @@
+/tmp/slurmd/job22778509/slurm_script: line 19: deactivate: No such file or directory
+Iteration 0
+Elapsed time for kappa 152.4629 sec
+Elapsed time for experts 67.2664 sec
+Elapsed time for households 60.2035 sec
+Iteration 1
+Elapsed time for kappa 109.8684 sec
+Elapsed time for experts 63.5702 sec
+Elapsed time for households 58.5489 sec
+Iteration 2
+Elapsed time for kappa 113.0942 sec
+Elapsed time for experts 63.5099 sec
+Elapsed time for households 57.7747 sec
+Iteration 3
+Elapsed time for kappa 111.8784 sec
+Elapsed time for experts 60.9357 sec
+Elapsed time for households 58.2136 sec
+Iteration 4
+Elapsed time for kappa 110.7683 sec
+Elapsed time for experts 60.2378 sec
+Elapsed time for households 58.0617 sec
+Iteration 5
+Elapsed time for kappa 107.2856 sec
+Elapsed time for experts 59.7081 sec
+Elapsed time for households 56.1491 sec
+Iteration 6
+Elapsed time for kappa 108.0472 sec
+Elapsed time for experts 59.3677 sec
+Elapsed time for households 57.7968 sec
+Iteration 7
+Elapsed time for kappa 120.0693 sec
+Elapsed time for experts 60.1005 sec
+Elapsed time for households 58.3692 sec
+Iteration 8
+Elapsed time for kappa 112.1538 sec
+Elapsed time for experts 59.5708 sec
+Elapsed time for households 57.3391 sec
+Iteration 9
+Elapsed time for kappa 106.4916 sec
+Elapsed time for experts 58.2835 sec
+Elapsed time for households 56.7005 sec
+Iteration 10
+Elapsed time for kappa 106.4171 sec
+Elapsed time for experts 59.2119 sec
+Elapsed time for households 55.8574 sec
+Iteration 11
+Elapsed time for kappa 108.7241 sec
+Elapsed time for experts 59.6567 sec
+Elapsed time for households 55.5386 sec
+Iteration 12
+Elapsed time for kappa 117.2849 sec
+Elapsed time for experts 60.9316 sec
+Elapsed time for households 56.1352 sec
+Iteration 13
+Elapsed time for kappa 108.7438 sec
+Elapsed time for experts 59.0642 sec
+Elapsed time for households 58.0678 sec
+Iteration 14
+Elapsed time for kappa 109.6084 sec
+Elapsed time for experts 59.2997 sec
+Elapsed time for households 56.4299 sec
+Elapsed time for training 3475.8994 sec
