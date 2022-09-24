@@ -1,0 +1,62 @@
+/tmp/slurmd/job22784873/slurm_script: line 19: deactivate: No such file or directory
+Iteration 0
+Elapsed time for kappa 146.0425 sec
+Elapsed time for experts 68.5904 sec
+Elapsed time for households 56.0082 sec
+Iteration 1
+Elapsed time for kappa 121.3177 sec
+Elapsed time for experts 57.0836 sec
+Elapsed time for households 52.4165 sec
+Iteration 2
+Elapsed time for kappa 125.6184 sec
+Elapsed time for experts 62.3248 sec
+Elapsed time for households 52.0412 sec
+Iteration 3
+Elapsed time for kappa 117.8768 sec
+Elapsed time for experts 56.0683 sec
+Elapsed time for households 60.1870 sec
+Iteration 4
+Elapsed time for kappa 110.9539 sec
+Elapsed time for experts 61.2454 sec
+Elapsed time for households 54.9621 sec
+Iteration 5
+Elapsed time for kappa 115.9521 sec
+Elapsed time for experts 55.6517 sec
+Elapsed time for households 52.5751 sec
+Iteration 6
+Elapsed time for kappa 118.3625 sec
+Elapsed time for experts 59.5700 sec
+Elapsed time for households 50.0911 sec
+Iteration 7
+Elapsed time for kappa 117.9392 sec
+Elapsed time for experts 53.2488 sec
+Elapsed time for households 54.0268 sec
+Iteration 8
+Elapsed time for kappa 98.3306 sec
+Elapsed time for experts 49.9906 sec
+Elapsed time for households 46.9746 sec
+Iteration 9
+Elapsed time for kappa 98.0259 sec
+Elapsed time for experts 50.1237 sec
+Elapsed time for households 47.0611 sec
+Iteration 10
+Elapsed time for kappa 96.5852 sec
+Elapsed time for experts 49.4014 sec
+Elapsed time for households 46.9980 sec
+Iteration 11
+Elapsed time for kappa 97.3784 sec
+Elapsed time for experts 49.6821 sec
+Elapsed time for households 45.8640 sec
+Iteration 12
+Elapsed time for kappa 95.9411 sec
+Elapsed time for experts 48.9707 sec
+Elapsed time for households 46.9557 sec
+Iteration 13
+Elapsed time for kappa 108.0816 sec
+Elapsed time for experts 50.6913 sec
+Elapsed time for households 48.3766 sec
+Iteration 14
+Elapsed time for kappa 101.4963 sec
+Elapsed time for experts 50.0396 sec
+Elapsed time for households 46.4983 sec
+Elapsed time for training 3254.6204 sec
