@@ -1,0 +1,62 @@
+/tmp/slurmd/job22791632/slurm_script: line 19: deactivate: No such file or directory
+Iteration 0
+Elapsed time for kappa 140.6111 sec
+Elapsed time for experts 58.9365 sec
+Elapsed time for households 52.3593 sec
+Iteration 1
+Elapsed time for kappa 97.4992 sec
+Elapsed time for experts 53.0978 sec
+Elapsed time for households 51.3705 sec
+Iteration 2
+Elapsed time for kappa 98.0859 sec
+Elapsed time for experts 52.6380 sec
+Elapsed time for households 49.6365 sec
+Iteration 3
+Elapsed time for kappa 99.7477 sec
+Elapsed time for experts 52.7142 sec
+Elapsed time for households 19.4343 sec
+Iteration 4
+Elapsed time for kappa 96.7961 sec
+Elapsed time for experts 51.9845 sec
+Elapsed time for households 48.8670 sec
+Iteration 5
+Elapsed time for kappa 97.8636 sec
+Elapsed time for experts 52.0895 sec
+Elapsed time for households 48.3581 sec
+Iteration 6
+Elapsed time for kappa 97.1984 sec
+Elapsed time for experts 52.1729 sec
+Elapsed time for households 49.2120 sec
+Iteration 7
+Elapsed time for kappa 105.5512 sec
+Elapsed time for experts 53.8168 sec
+Elapsed time for households 48.6207 sec
+Iteration 8
+Elapsed time for kappa 99.3501 sec
+Elapsed time for experts 52.9889 sec
+Elapsed time for households 48.4798 sec
+Iteration 9
+Elapsed time for kappa 97.7977 sec
+Elapsed time for experts 51.8249 sec
+Elapsed time for households 47.9376 sec
+Iteration 10
+Elapsed time for kappa 97.4202 sec
+Elapsed time for experts 52.2389 sec
+Elapsed time for households 48.2604 sec
+Iteration 11
+Elapsed time for kappa 96.0960 sec
+Elapsed time for experts 51.5842 sec
+Elapsed time for households 48.9832 sec
+Iteration 12
+Elapsed time for kappa 97.8733 sec
+Elapsed time for experts 52.1144 sec
+Elapsed time for households 54.7098 sec
+Iteration 13
+Elapsed time for kappa 102.0812 sec
+Elapsed time for experts 53.0504 sec
+Elapsed time for households 48.9764 sec
+Iteration 14
+Elapsed time for kappa 101.7780 sec
+Elapsed time for experts 52.8868 sec
+Elapsed time for households 48.9193 sec
+Elapsed time for training 3035.0012 sec
