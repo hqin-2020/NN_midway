@@ -33,19 +33,19 @@ else
     mkdir -p ./bash/$domain_folder
 fi
 
-for chiUnderline in 0.5 1.0 0.2
+for chiUnderline in 0.5 0.2
 do 
-    for a_e in 0.15
+    for a_e in 0.14
     do
-        for a_h in 0.1 0.05
+        for a_h in 0.135
         do
             for gamma_e in 1.0
             do
-                for gamma_h in 3.0
+                for gamma_h in 1.0
                 do
-                    for psi_e in 0.5 1.5
+                    for psi_e in 1.0
                     do
-                        for psi_h in 0.5 1.5
+                        for psi_h in 1.0
                         do
                             model_folder=chiUnderline_${chiUnderline}_a_e_${a_e}_a_h_${a_h}_gamma_e_${gamma_e}_gamma_h_${gamma_h}_psi_e_${psi_e}_psi_h_${psi_h}
                             mkdir -p ./job-outs/$domain_folder/$model_folder
