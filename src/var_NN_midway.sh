@@ -10,7 +10,7 @@ sigma_K_norm=0.04
 sigma_Z_norm=0.0141
 sigma_V_norm=0.132
 sigma_Vtilde_norm=0.1
-trial=2
+trial=6
 weight1=0.0
 boundary1=2
 weight2=0.0
@@ -33,15 +33,15 @@ else
     mkdir -p ./bash/$domain_folder
 fi
 
-for chiUnderline in 1.0
+for chiUnderline in 0.5 0.2
 do 
     for a_e in 0.14
     do
         for a_h in 0.135
         do
-            for gamma_e in 0.5
+            for gamma_e in 1.0
             do
-                for gamma_h in 8.0
+                for gamma_h in 1.0
                 do
                     for psi_e in 1.0
                     do
