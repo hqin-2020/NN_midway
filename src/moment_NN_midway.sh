@@ -1,14 +1,14 @@
 #! /bin/bash
 
-nWealth=20
-nZ=10
-nV=10
-nVtilde=10
+nWealth=100
+nZ=30
+nV=0
+nVtilde=30
 V_bar=1.0
 Vtilde_bar=1.0
 sigma_K_norm=0.04
 sigma_Z_norm=0.0141
-sigma_V_norm=0.132
+sigma_V_norm=0.0
 sigma_Vtilde_norm=0.1
 trial=6
 weight1=0.0
@@ -33,19 +33,19 @@ else
     mkdir -p ./bash/$domain_folder
 fi
 
-for chiUnderline in 0.5 1.0 0.2
+for chiUnderline in 0.5 0.2
 do 
-    for a_e in 0.15
+    for a_e in 0.14
     do
-        for a_h in 0.1 0.05
+        for a_h in 0.135
         do
             for gamma_e in 1.0
             do
-                for gamma_h in 3.0
+                for gamma_h in 1.0
                 do
-                    for psi_e in 0.5 1.5
+                    for psi_e in 1.0
                     do
-                        for psi_h in 0.5 1.5
+                        for psi_h in 1.0
                         do
                             model_folder=chiUnderline_${chiUnderline}_a_e_${a_e}_a_h_${a_h}_gamma_e_${gamma_e}_gamma_h_${gamma_h}_psi_e_${psi_e}_psi_h_${psi_h}
                             mkdir -p ./job-outs/$domain_folder/$model_folder
@@ -61,13 +61,13 @@ do
                                         do  
                                             for kappa_layers in 3
                                             do
-                                                for W_fix in 14
+                                                for W_fix in 49
                                                 do                                                                                                
-                                                    for Z_fix in 4
+                                                    for Z_fix in 14
                                                     do 
-                                                        for V_fix in 4
+                                                        for V_fix in 0
                                                         do  
-                                                            for Vtilde_fix in 4
+                                                            for Vtilde_fix in 14
                                                             do
                                                                 layer_folder=trial_${trial}_XiE_layers_${XiE_layers}_XiH_layers_${XiH_layers}_kappa_layers_${kappa_layers}_points_size_${points_size}_iter_num_${iter_num}
                                                                 mkdir -p ./job-outs/$domain_folder/$model_folder/$layer_folder
