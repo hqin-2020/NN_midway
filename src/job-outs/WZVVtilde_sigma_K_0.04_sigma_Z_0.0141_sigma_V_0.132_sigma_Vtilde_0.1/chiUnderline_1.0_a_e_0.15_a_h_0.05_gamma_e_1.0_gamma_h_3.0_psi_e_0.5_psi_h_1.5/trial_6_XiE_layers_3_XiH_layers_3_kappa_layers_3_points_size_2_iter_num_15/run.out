@@ -1,0 +1,62 @@
+/tmp/slurmd/job22800157/slurm_script: line 19: deactivate: No such file or directory
+Iteration 0
+Elapsed time for kappa 129.8396 sec
+Elapsed time for experts 42.0115 sec
+Elapsed time for households 36.2201 sec
+Iteration 1
+Elapsed time for kappa 86.8439 sec
+Elapsed time for experts 37.4419 sec
+Elapsed time for households 33.6581 sec
+Iteration 2
+Elapsed time for kappa 90.0085 sec
+Elapsed time for experts 36.0003 sec
+Elapsed time for households 33.0687 sec
+Iteration 3
+Elapsed time for kappa 86.8529 sec
+Elapsed time for experts 11.1693 sec
+Elapsed time for households 33.3702 sec
+Iteration 4
+Elapsed time for kappa 85.9960 sec
+Elapsed time for experts 35.3669 sec
+Elapsed time for households 33.3498 sec
+Iteration 5
+Elapsed time for kappa 84.2112 sec
+Elapsed time for experts 35.6010 sec
+Elapsed time for households 33.8913 sec
+Iteration 6
+Elapsed time for kappa 85.7592 sec
+Elapsed time for experts 36.4675 sec
+Elapsed time for households 33.6628 sec
+Iteration 7
+Elapsed time for kappa 93.1618 sec
+Elapsed time for experts 37.1413 sec
+Elapsed time for households 34.8615 sec
+Iteration 8
+Elapsed time for kappa 85.9658 sec
+Elapsed time for experts 36.7768 sec
+Elapsed time for households 34.5144 sec
+Iteration 9
+Elapsed time for kappa 85.4719 sec
+Elapsed time for experts 36.3152 sec
+Elapsed time for households 34.2505 sec
+Iteration 10
+Elapsed time for kappa 87.0248 sec
+Elapsed time for experts 35.8472 sec
+Elapsed time for households 34.5426 sec
+Iteration 11
+Elapsed time for kappa 85.0195 sec
+Elapsed time for experts 36.2086 sec
+Elapsed time for households 34.0113 sec
+Iteration 12
+Elapsed time for kappa 91.3139 sec
+Elapsed time for experts 37.3785 sec
+Elapsed time for households 35.0805 sec
+Iteration 13
+Elapsed time for kappa 84.9874 sec
+Elapsed time for experts 36.8761 sec
+Elapsed time for households 34.6753 sec
+Iteration 14
+Elapsed time for kappa 85.7926 sec
+Elapsed time for experts 36.4776 sec
+Elapsed time for households 34.7804 sec
+Elapsed time for training 2390.3382 sec
