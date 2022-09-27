@@ -33,11 +33,11 @@ else
     mkdir -p ./bash/$domain_folder
 fi
 
-for chiUnderline in 0.5 0.2
+for chiUnderline in 1.0
 do 
-    for a_e in 0.14
+    for a_e in 0.15
     do
-        for a_h in 0.135
+        for a_h in 0.13 0.1 0.05
         do
             for gamma_e in 1.0
             do
