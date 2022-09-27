@@ -151,17 +151,46 @@ V_NN = V_NN.round(decimals=14)
 NN_variables = pd.DataFrame([W_NN, Z_NN, V_NN, Vtilde_NN, logXiE_NN[:,0], logXiH_NN[:,0], XiE_NN[:,0], XiH_NN[:,0], kappa_NN[:,0], q_NN[:,0], chi_NN[:,0], sigmaR_NN[:,0], sigmaR_NN[:,1], sigmaR_NN[:,2], PiH_NN[:,0], PiH_NN[:,1], PiH_NN[:,2], PiE_NN[:,0], PiE_NN[:,1], PiE_NN[:,2], r_NN[:,0], dent_NN],\
                             index = moment_list).T
 
+NN_variables_norm = pd.DataFrame([HJB_E_NN[:,0], HJB_H_NN[:,0],kappa_min_NN[:,0]],index = ['HJB_E','HJB_H','kappa_min']).T
+NN_variables_norm = pd.concat([NN_variables,NN_variables_norm],axis=1)
+
 W_grid = NN_variables['W'].unique()
 Z_grid = NN_variables['Z'].unique()
 V_grid = NN_variables['V'].unique()
 Vtilde_grid = NN_variables['Vtilde'].unique()
 
-fix_dict = {'W':W_fix,'Z':Z_fix,'V':V_fix,'Vtilde':Vtilde_fix}
+W_boundary_points = int(round(W_grid.shape[0]*0.05,0)) if int(round(W_grid.shape[0]*0.05,0))!=0 else 1
+W_inner_points = np.sort(np.unique(W_NN))[W_boundary_points:-W_boundary_points]
+
+Z_boundary_points = int(round(Z_grid.shape[0]*0.05,0)) if int(round(Z_grid.shape[0]*0.05,0))!=0 else 1
+Z_inner_points = np.sort(np.unique(Z_NN))[Z_boundary_points:-Z_boundary_points]
 
 if sigma_Vtilde_norm == 0:
+  V_boundary_points = int(round(V_grid.shape[0]*0.05,0)) if int(round(V_grid.shape[0]*0.05,0))!=0 else 1
+  V_inner_points = np.sort(np.unique(V_NN))[V_boundary_points:-V_boundary_points]
+elif sigma_V_norm == 0:
+  Vtilde_boundary_points = int(round(Vtilde_grid.shape[0]*0.05,0)) if int(round(Vtilde_grid.shape[0]*0.05,0))!=0 else 1
+  Vtilde_inner_points = np.sort(np.unique(Vtilde_NN))[Vtilde_boundary_points:-Vtilde_boundary_points]
+else:
+  V_boundary_points = int(round(V_grid.shape[0]*0.05,0)) if int(round(V_grid.shape[0]*0.05,0))!=0 else 1
+  V_inner_points = np.sort(np.unique(V_NN))[V_boundary_points:-V_boundary_points]
+
+  Vtilde_boundary_points = int(round(Vtilde_grid.shape[0]*0.05,0)) if int(round(Vtilde_grid.shape[0]*0.05,0))!=0 else 1
+  Vtilde_inner_points = np.sort(np.unique(Vtilde_NN))[Vtilde_boundary_points:-Vtilde_boundary_points]
+
+
+fix_dict = {'W':W_fix,'Z':Z_fix,'V':V_fix,'Vtilde':Vtilde_fix}
+
+
+if sigma_Vtilde_norm == 0:
+
+    NN_variables_inner = NN_variables[(NN_variables['W'].isin(W_inner_points)) & (NN_variables['Z'].isin(Z_inner_points))& (NN_variables['V'].isin(V_inner_points))]
+    NN_variables_norm_inner = NN_variables_norm[(NN_variables_norm['W'].isin(W_inner_points)) & (NN_variables_norm['Z'].isin(Z_inner_points))& (NN_variables_norm['V'].isin(V_inner_points))]
+
     fixed_variable = ['V','Z','W']
     fixed_points = [fix_dict[i] for i in fixed_variable]
     NN_slice = [NN_variables.loc[(NN_variables[v] == NN_variables[v].unique()[fixed_points[fixed_variable.index(v)]])].drop(v,axis=1).reset_index(drop=True) for v in fixed_variable]
+    NN_slice_inner = [NN_variables_inner.loc[(NN_variables_inner[v] == NN_variables[v].unique()[fixed_points[fixed_variable.index(v)]])].drop(v,axis=1).reset_index(drop=True) for v in fixed_variable]
     fixed_values = [v + ' fixed at ' + str("{0:.4f}".format(NN_variables[v].unique()[fixed_points[fixed_variable.index(v)]])) for v in fixed_variable]
     
     fixed_variable = [['W','Z'],['W','V'],['Z','V']]
@@ -183,13 +212,21 @@ if sigma_Vtilde_norm == 0:
     NN_first_moments_2d = [NN_first_moment_conditional_W, NN_first_moment_conditional_Z, NN_first_moment_conditional_V]
     NN_second_moments_2d = [NN_second_moment_conditional_W, NN_second_moment_conditional_Z, NN_second_moment_conditional_V]
 
+    NN_marginal_density = [NN_variables.groupby(['W','Z']).sum().reset_index(drop=False), NN_variables.groupby(['W','V']).sum().reset_index(drop=False),NN_variables.groupby(['V','Z']).sum().reset_index(drop=False)]
+    NN_marginal_density_2d = [NN_variables.groupby(['W']).sum().reset_index(drop=False), NN_variables.groupby(['Z']).sum().reset_index(drop=False),NN_variables.groupby(['V']).sum().reset_index(drop=False)]
+
 elif sigma_V_norm == 0:
+
     new_columns = NN_variables.columns.tolist()
     NN_variables = NN_variables[new_columns[:2] + [new_columns[3]]+ [new_columns[2]] +new_columns[4:]]
+    NN_variables_inner = NN_variables[(NN_variables['W'].isin(W_inner_points)) & (NN_variables['Z'].isin(Z_inner_points))& (NN_variables['Vtilde'].isin(Vtilde_inner_points))]
+    NN_variables_norm_inner = NN_variables_norm[(NN_variables_norm['W'].isin(W_inner_points)) & (NN_variables_norm['Z'].isin(Z_inner_points))& (NN_variables_norm['Vtilde'].isin(Vtilde_inner_points))]
 
     fixed_variable = ['Vtilde','Z','W']
     fixed_points = [fix_dict[i] for i in fixed_variable]
     NN_slice = [NN_variables.loc[(NN_variables[v] == NN_variables[v].unique()[fixed_points[fixed_variable.index(v)]])].drop(v,axis=1).reset_index(drop=True) for v in fixed_variable]
+    NN_slice_inner = [NN_variables_inner.loc[(NN_variables_inner[v] == NN_variables[v].unique()[fixed_points[fixed_variable.index(v)]])].drop(v,axis=1).reset_index(drop=True) for v in fixed_variable]
+
     fixed_values = [v + ' fixed at ' + str("{0:.4f}".format(NN_variables[v].unique()[fixed_points[fixed_variable.index(v)]])) for v in fixed_variable]
     
     fixed_variable = [['W','Z'],['W','Vtilde'],['Z','Vtilde']]
@@ -211,21 +248,24 @@ elif sigma_V_norm == 0:
     NN_first_moments_2d = [NN_first_moment_conditional_W, NN_first_moment_conditional_Z, NN_first_moment_conditional_Vtilde]
     NN_second_moments_2d = [NN_second_moment_conditional_W, NN_second_moment_conditional_Z, NN_second_moment_conditional_Vtilde]
 
+    NN_marginal_density = [NN_variables.groupby(['W','Z']).sum().reset_index(drop=False), NN_variables.groupby(['W','Vtilde']).sum().reset_index(drop=False),NN_variables.groupby(['Vtilde','Z']).sum().reset_index(drop=False)]
+    NN_marginal_density_2d = [NN_variables.groupby(['W']).sum().reset_index(drop=False), NN_variables.groupby(['Z']).sum().reset_index(drop=False),NN_variables.groupby(['Vtilde']).sum().reset_index(drop=False)]
+
 else:
+
+  NN_variables_inner = NN_variables[(NN_variables['W'].isin(W_inner_points)) & (NN_variables['Z'].isin(Z_inner_points))& (NN_variables['V'].isin(V_inner_points))& (NN_variables['Vtilde'].isin(Vtilde_inner_points))]
+  NN_variables_norm_inner = NN_variables_norm[(NN_variables_norm['W'].isin(W_inner_points)) & (NN_variables_norm['Z'].isin(Z_inner_points))& (NN_variables_norm['V'].isin(V_inner_points))& (NN_variables_norm['Vtilde'].isin(Vtilde_inner_points))]
+
   fixed_variable = [['W','Z'],['W','V'],['W','Vtilde'],['Z','V'],['Z','Vtilde'],['V','Vtilde']]
   fixed_points = [[fix_dict[i] for i in j] for j in fixed_variable]
   NN_slice = [NN_variables.loc[(NN_variables[v[0]] == NN_variables[v[0]].unique()[fixed_points[fixed_variable.index(v)][0]])&(NN_variables[v[1]] == NN_variables[v[1]].unique()[fixed_points[fixed_variable.index(v)][1]])].drop(v,axis=1).reset_index(drop=True) for v in fixed_variable]
+  NN_slice_inner = [NN_variables_inner.loc[(NN_variables_inner[v[0]] == NN_variables[v[0]].unique()[fixed_points[fixed_variable.index(v)][0]])&(NN_variables_inner[v[1]] == NN_variables[v[1]].unique()[fixed_points[fixed_variable.index(v)][1]])].drop(v,axis=1).reset_index(drop=True) for v in fixed_variable]
   fixed_values = [v[0] + ' fixed at ' + str("{0:.4f}".format(NN_variables[v[0]].unique()[fixed_points[fixed_variable.index(v)][0]])) + ', ' + v[1] + ' fixed at ' + str("{0:.4f}".format(NN_variables[v[1]].unique()[fixed_points[fixed_variable.index(v)][1]])) for v in fixed_variable]
 
   fixed_variable = [['W','Z','V'],['W','Z','Vtilde'],['W','V','Vtilde'],['Z','V','Vtilde']]
   fixed_points = [[fix_dict[i] for i in j] for j in fixed_variable]
   NN_slice_2d = [NN_variables.loc[(NN_variables[v[0]] == NN_variables[v[0]].unique()[fixed_points[fixed_variable.index(v)][0]])&(NN_variables[v[1]] == NN_variables[v[1]].unique()[fixed_points[fixed_variable.index(v)][1]])&(NN_variables[v[2]] == NN_variables[v[2]].unique()[fixed_points[fixed_variable.index(v)][2]])].drop(v,axis=1).reset_index(drop=True) for v in fixed_variable]
   fixed_values_2d = [v[0] + ' fixed at ' + str("{0:.4f}".format(NN_variables[v[0]].unique()[fixed_points[fixed_variable.index(v)][0]])) + ', ' + v[1] + ' fixed at ' + str("{0:.4f}".format(NN_variables[v[1]].unique()[fixed_points[fixed_variable.index(v)][1]])) + ', '+ v[2] + ' fixed at ' + str("{0:.4f}".format(NN_variables[v[2]].unique()[fixed_points[fixed_variable.index(v)][2]])) for v in fixed_variable]
-
-  NN_first_moment_conditional_W, NN_second_moment_conditional_W = calc_moment(NN_variables, ['W'], moment_list)
-  NN_first_moment_conditional_Z, NN_second_moment_conditional_Z = calc_moment(NN_variables, ['Z'], moment_list)
-  NN_first_moment_conditional_V, NN_second_moment_conditional_V = calc_moment(NN_variables, ['V'], moment_list)
-  NN_first_moment_conditional_Vtilde, NN_second_moment_conditional_Vtilde = calc_moment(NN_variables, ['Vtilde'], moment_list)
 
   NN_first_moment_conditional_WZ, NN_second_moment_conditional_WZ = calc_moment(NN_variables, ['W','Z'], moment_list)
   NN_first_moment_conditional_WV, NN_second_moment_conditional_WV = calc_moment(NN_variables, ['W','V'], moment_list)
@@ -234,11 +274,19 @@ else:
   NN_first_moment_conditional_ZVtilde, NN_second_moment_conditional_ZVtilde = calc_moment(NN_variables, ['Z','Vtilde'], moment_list)
   NN_first_moment_conditional_VVtilde, NN_second_moment_conditional_VVtilde = calc_moment(NN_variables, ['V','Vtilde'], moment_list)
 
+  NN_first_moment_conditional_W, NN_second_moment_conditional_W = calc_moment(NN_variables, ['W'], moment_list)
+  NN_first_moment_conditional_Z, NN_second_moment_conditional_Z = calc_moment(NN_variables, ['Z'], moment_list)
+  NN_first_moment_conditional_V, NN_second_moment_conditional_V = calc_moment(NN_variables, ['V'], moment_list)
+  NN_first_moment_conditional_Vtilde, NN_second_moment_conditional_Vtilde = calc_moment(NN_variables, ['Vtilde'], moment_list)
+
   NN_first_moments = [NN_first_moment_conditional_WZ, NN_first_moment_conditional_WV, NN_first_moment_conditional_WVtilde, NN_first_moment_conditional_ZV, NN_first_moment_conditional_ZVtilde, NN_first_moment_conditional_VVtilde]
   NN_second_moments = [NN_second_moment_conditional_WZ, NN_second_moment_conditional_WV, NN_second_moment_conditional_WVtilde, NN_second_moment_conditional_ZV, NN_second_moment_conditional_ZVtilde, NN_second_moment_conditional_VVtilde]
 
   NN_first_moments_2d = [NN_first_moment_conditional_W, NN_first_moment_conditional_Z, NN_first_moment_conditional_V, NN_first_moment_conditional_Vtilde]
   NN_second_moments_2d = [NN_second_moment_conditional_W, NN_second_moment_conditional_Z, NN_second_moment_conditional_V, NN_second_moment_conditional_Vtilde]
+
+  NN_marginal_density = [NN_variables.groupby(['W','Z']).sum().reset_index(drop=False), NN_variables.groupby(['W','V']).sum().reset_index(drop=False), NN_variables.groupby(['W','Vtilde']).sum().reset_index(drop=False),NN_variables.groupby(['Z','V']).sum().reset_index(drop=False),NN_variables.groupby(['Z','Vtilde']).sum().reset_index(drop=False),NN_variables.groupby(['V','Vtilde']).sum().reset_index(drop=False)]
+  NN_marginal_density_2d = [NN_variables.groupby(['W']).sum().reset_index(drop=False), NN_variables.groupby(['Z']).sum().reset_index(drop=False),NN_variables.groupby(['V']).sum().reset_index(drop=False),NN_variables.groupby(['Vtilde']).sum().reset_index(drop=False)]
 
 if status != '3':
 
@@ -290,20 +338,24 @@ if status != '3':
         firstCoefsH_MFR             = np.genfromtxt(mfrSuite_resdir + '/firstCoefsH_final.dat').reshape(3,-1).transpose()
         secondCoefsE_MFR            = np.genfromtxt(mfrSuite_resdir + '/secondCoefsE_final.dat').reshape(3,-1).transpose()
         secondCoefsH_MFR            = np.genfromtxt(mfrSuite_resdir + '/secondCoefsH_final.dat').reshape(3,-1).transpose()
-
-        MFR_variables = pd.DataFrame([W_MFR,Z_MFR,V_MFR,Vtilde_MFR,logXiE_MFR,logXiH_MFR, XiE_MFR, XiH_MFR, kappa_MFR,q_MFR[:,0],chi_MFR[:,0],sigmaR_MFR[:,0],sigmaR_MFR[:,1],sigmaR_MFR[:,2],PiH_MFR[:,0],PiH_MFR[:,1],PiH_MFR[:,2],PiE_MFR[:,0],PiE_MFR[:,1],PiE_MFR[:,2],r_MFR[:,0],dent_MFR],\
+                
+        MFR_variables = pd.DataFrame([W_MFR,Z_MFR,V_MFR,Vtilde_MFR,logXiE_MFR,logXiH_MFR,XiE_MFR,XiH_MFR,kappa_MFR,q_MFR[:,0],chi_MFR[:,0], sigmaR_MFR[:,0],sigmaR_MFR[:,1],sigmaR_MFR[:,2],PiH_MFR[:,0],PiH_MFR[:,1],PiH_MFR[:,2],PiE_MFR[:,0],PiE_MFR[:,1],PiE_MFR[:,2],r_MFR[:,0],dent_MFR],\
                             index = moment_list).T
         MFR_variables = MFR_variables.astype(np.float64)
+        MFR_variables_norm = pd.DataFrame([np.zeros(W_MFR.shape),np.zeros(W_MFR.shape),np.zeros(W_MFR.shape)],index = ['HJB_E','HJB_H','kappa_min']).T
+        MFR_variables_norm = pd.concat([MFR_variables,MFR_variables_norm],axis=1)
         
         if sigma_Vtilde_norm == 0:
-            
+            MFR_variables_inner = MFR_variables[(MFR_variables['W'].isin(W_inner_points)) & (MFR_variables['Z'].isin(Z_inner_points))& (MFR_variables['V'].isin(V_inner_points))]
+            MFR_variables_norm_inner = MFR_variables_norm[(MFR_variables_norm['W'].isin(W_inner_points)) & (MFR_variables_norm['Z'].isin(Z_inner_points))& (MFR_variables_norm['V'].isin(V_inner_points))]
             fixed_variable = ['V','Z','W']
             fixed_points = [fix_dict[i] for i in fixed_variable]
             MFR_slice = [MFR_variables.loc[(MFR_variables[v] == MFR_variables[v].unique()[fixed_points[fixed_variable.index(v)]])].drop(v,axis=1).reset_index(drop=True) for v in fixed_variable]
+            MFR_slice_inner = [MFR_variables_inner.loc[(MFR_variables_inner[v] == MFR_variables[v].unique()[fixed_points[fixed_variable.index(v)]])].drop(v,axis=1).reset_index(drop=True) for v in fixed_variable]
             
             fixed_variable = [['W','Z'],['W','V'],['Z','V']]
             fixed_points = [[fix_dict[i] for i in j] for j in fixed_variable]
-            MFR_slice_2d = [MFR_variables.loc[(MFR_variables[i[0]]==MFR_variables[i[0]].unique()[fixed_points[fixed_variable.index(i)][0]]) &(MFR_variables[i[1]]==MFR_variables[i[1]].unique()[fixed_points[fixed_variable.index(i)][1]])].drop(i,axis=1).reset_index(drop=True) for i in fixed_variable]
+            MFR_slice_2d = [MFR_variables.loc[(MFR_variables[i[0]]==MFR_variables[i[0]].unique()[fixed_points[fixed_variable.index(i)[0]]]) &(MFR_variables[i[1]]==MFR_variables[i[1]].unique()[fixed_points[fixed_variable.index(i)[1]]])].drop(i,axis=1).reset_index(drop=True) for i in fixed_variable]
 
             MFR_first_moment_conditional_WZ, MFR_second_moment_conditional_WZ = calc_moment(MFR_variables, ['W','Z'], moment_list)
             MFR_first_moment_conditional_WV, MFR_second_moment_conditional_WV = calc_moment(MFR_variables, ['W','V'], moment_list)
@@ -319,13 +371,19 @@ if status != '3':
             MFR_first_moments_2d = [MFR_first_moment_conditional_W, MFR_first_moment_conditional_Z, MFR_first_moment_conditional_V]
             MFR_second_moments_2d = [MFR_second_moment_conditional_W, MFR_second_moment_conditional_Z, MFR_second_moment_conditional_V]
 
+            MFR_marginal_density = [MFR_variables.groupby(['W','Z']).sum().reset_index(drop=False), MFR_variables.groupby(['W','V']).sum().reset_index(drop=False),MFR_variables.groupby(['V','Z']).sum().reset_index(drop=False)]
+            MFR_marginal_density_2d = [MFR_variables.groupby(['W']).sum().reset_index(drop=False), MFR_variables.groupby(['Z']).sum().reset_index(drop=False),MFR_variables.groupby(['V']).sum().reset_index(drop=False)]
+
         elif sigma_V_norm == 0:
             new_columns = MFR_variables.columns.tolist()
             MFR_variables = MFR_variables[new_columns[:2] + [new_columns[3]]+ [new_columns[2]] +new_columns[4:]]
+            MFR_variables_inner = MFR_variables[(MFR_variables['W'].isin(W_inner_points)) & (MFR_variables['Z'].isin(Z_inner_points))& (MFR_variables['Vtilde'].isin(Vtilde_inner_points))]
+            MFR_variables_norm_inner = MFR_variables_norm[(MFR_variables['W'].isin(W_inner_points)) & (MFR_variables_norm['Z'].isin(Z_inner_points))& (MFR_variables_norm['Vtilde'].isin(Vtilde_inner_points))]
 
             fixed_variable = ['Vtilde','Z','W']
             fixed_points = [fix_dict[i] for i in fixed_variable]
             MFR_slice = [MFR_variables.loc[(MFR_variables[v] == MFR_variables[v].unique()[fixed_points[fixed_variable.index(v)]])].drop(v,axis=1).reset_index(drop=True) for v in fixed_variable]
+            MFR_slice_inner = [MFR_variables_inner.loc[(MFR_variables_inner[v] == MFR_variables[v].unique()[fixed_points[fixed_variable.index(v)]])].drop(v,axis=1).reset_index(drop=True) for v in fixed_variable]
             
             fixed_variable = [['W','Z'],['W','Vtilde'],['Z','Vtilde']]
             fixed_points = [[fix_dict[i] for i in j] for j in fixed_variable]
@@ -344,49 +402,75 @@ if status != '3':
 
             MFR_first_moments_2d = [MFR_first_moment_conditional_W, MFR_first_moment_conditional_Z, MFR_first_moment_conditional_Vtilde]
             MFR_second_moments_2d = [MFR_second_moment_conditional_W, MFR_second_moment_conditional_Z, MFR_second_moment_conditional_Vtilde]
+             
+            MFR_marginal_density = [MFR_variables.groupby(['W','Z']).sum().reset_index(drop=False), MFR_variables.groupby(['W','Vtilde']).sum().reset_index(drop=False),MFR_variables.groupby(['Vtilde','Z']).sum().reset_index(drop=False)]
+            MFR_marginal_density_2d = [MFR_variables.groupby(['W']).sum().reset_index(drop=False), MFR_variables.groupby(['Z']).sum().reset_index(drop=False),MFR_variables.groupby(['Vtilde']).sum().reset_index(drop=False)]
+
     else:
-        MFR_slice = []; MFR_first_moments = []; MFR_second_moments = []; MFR_slice_2d = []; MFR_first_moments_2d = []; MFR_second_moments_2d = []
+        MFR_slice = []; MFR_slice_inner = []; MFR_first_moments = []; MFR_second_moments = []; MFR_slice_2d = []; MFR_first_moments_2d = []; MFR_second_moments_2d = []; MFR_marginal_density = []; MFR_marginal_density_2d = []
 else:
-    MFR_slice = []; MFR_first_moments = []; MFR_second_moments = []; MFR_slice_2d = []; MFR_first_moments_2d = []; MFR_second_moments_2d = []
+    MFR_slice = []; MFR_slice_inner = []; MFR_first_moments = []; MFR_second_moments = []; MFR_slice_2d = []; MFR_first_moments_2d = []; MFR_second_moments_2d = []; MFR_marginal_density = []; MFR_marginal_density_2d = []
 
 plot_results_slice = [MFR_slice, NN_slice]
+plot_results_slice_inner = [MFR_slice_inner, NN_slice_inner]
 plot_results_first_moments = [MFR_first_moments, NN_first_moments]
 plot_results_second_moments = [MFR_second_moments, NN_second_moments]
 plot_results_slice_2d = [MFR_slice_2d, NN_slice_2d]
 plot_results_first_moments_2d = [MFR_first_moments_2d, NN_first_moments_2d]
 plot_results_second_moments_2d = [MFR_second_moments_2d, NN_second_moments_2d]
+plot_results_density = [MFR_marginal_density, NN_marginal_density]
+plot_results_density_2d = [MFR_marginal_density_2d, NN_marginal_density_2d]
 
 var_names = [['logXiE'], ['logXiH'], ['XiE'], ['XiH'], ['kappa'], ['q'], ['chi'], ['sigmaR_first_shock', 'sigmaR_second_shock', 'sigmaR_third_shock'], ['PiH_first_shock', 'PiH_second_shock', 'PiH_third_shock'], ['PiE_first_shock', 'PiE_second_shock', 'PiE_third_shock'], ['r']]
 plot_contents = ['Log Experts Value Function',  'Log Households Value Function', 'Experts Value Function', 'Households Value Function', 'Kappa Policy Function', 'Capital Price', 'Chi Policy Function', 'Local Capital Return Volatility', 'Households Risk Price', 'Experts Risk Price', 'Short Term Interest Rate']
 
-for i in range(len(plot_contents)):
-    var_name = var_names[i]
-    height = 1200 if len(var_name) > 1 else 700
-    width_3d = 3500 if nDims == 4 else 1500
-    width_2d = 2300 if nDims == 4 else 1500
-    spacing = 0.05 if nDims == 4 else 0.1
+# for i in range(len(plot_contents)):
+#     var_name = var_names[i]
+#     height = 1200 if len(var_name) > 1 else 700
+#     width_3d = 3500 if nDims == 4 else 1500
+#     width_2d = 2300 if nDims == 4 else 1500
+#     spacing = 0.05 if nDims == 4 else 0.1
 
-    plot_content = plot_contents[i]
-    generateMomentPlots(status, plot_results_slice, var_name, plot_content, parameter_list, fixed = fixed_values, fix_dict = fix_dict, z_adjust = True, height=height, width=width_3d, spacing = spacing, path = docdir)
-    plot_content = plot_contents[i] + ' 2d'
-    generateMomentPlots_2d(status, plot_results_slice_2d, var_name, plot_content, parameter_list, fixed = fixed_values_2d, fix_dict = fix_dict, y_adjust = True, height=height, width=width_2d, spacing = spacing, path = docdir)
-    plot_content = 'Conditional Expectation of ' + plot_contents[i]
-    generateMomentPlots(status, plot_results_first_moments, var_name, plot_content, parameter_list, z_adjust = True, height=height, width=width_3d, spacing = spacing, path = docdir)
-    # plot_content = 'Conditional Variance of ' + plot_contents[i]
-    # generateMomentPlots(status, plot_results_second_moments, var_name, plot_content, parameter_list, z_adjust = True, height=height, width=width_3d, spacing = spacing, path = docdir)
-    plot_content = 'Conditional Expectation of ' + plot_contents[i] + ' 2d'
-    generateMomentPlots_2d(status, plot_results_first_moments_2d, var_name, plot_content, parameter_list, y_adjust = True, height=height, width=width_2d, spacing = spacing, path = docdir)
-    # plot_content = 'Conditional Variance of ' + plot_contents[i] + ' 2d'
-    # generateMomentPlots_2d(status, plot_results_second_moments_2d, var_name, plot_content, parameter_list, y_adjust = True, height=height, width=width_2d, spacing = spacing, path = docdir)
+#     plot_content = plot_contents[i]
+#     generateMomentPlots(status, plot_results_slice, var_name, plot_content, parameter_list, fixed = fixed_values, fix_dict = fix_dict, z_adjust = True, height=height, width=width_3d, spacing = spacing, path = docdir)
+#     plot_content = plot_contents[i] + ' Interior'
+#     generateMomentPlots(status, plot_results_slice_inner, var_name, plot_content, parameter_list, fixed = fixed_values, fix_dict = fix_dict, z_adjust = True, height=height, width=width_3d, spacing = spacing, path = docdir)    
+#     # plot_content = plot_contents[i] + ' 2d'
+#     # generateMomentPlots_2d(status, plot_results_slice_2d, var_name, plot_content, parameter_list, fixed = fixed_values_2d, fix_dict = fix_dict, y_adjust = True, height=height, width=width_2d, spacing = spacing, path = docdir)
+#     plot_content = 'Conditional Expectation of ' + plot_contents[i]
+#     generateMomentPlots(status, plot_results_first_moments, var_name, plot_content, parameter_list, z_adjust = True, height=height, width=width_3d, spacing = spacing, path = docdir)
+#     # plot_content = 'Conditional Variance of ' + plot_contents[i]
+#     # generateMomentPlots(status, plot_results_second_moments, var_name, plot_content, parameter_list, z_adjust = True, height=height, width=width_3d, spacing = spacing, path = docdir)
+#     plot_content = 'Conditional Expectation of ' + plot_contents[i] + ' 2d'
+#     generateMomentPlots_2d(status, plot_results_first_moments_2d, var_name, plot_content, parameter_list, y_adjust = True, height=height, width=width_2d, spacing = spacing, path = docdir)
+#     # plot_content = 'Conditional Variance of ' + plot_contents[i] + ' 2d'
+#     # generateMomentPlots_2d(status, plot_results_second_moments_2d, var_name, plot_content, parameter_list, y_adjust = True, height=height, width=width_2d, spacing = spacing, path = docdir)
 
-var_name = ['dent']
-plot_content = 'Stationary Densities'
-generateMomentPlots(status, plot_results_slice, var_name, plot_content, parameter_list, fixed = fixed_values, fix_dict = fix_dict, z_adjust = True, height=700, width=width_3d, spacing = spacing, path = docdir)
-plot_content = 'Stationary Densities' + ' 2d'
-generateMomentPlots_2d(status, plot_results_slice_2d, var_name, plot_content, parameter_list, fixed = fixed_values_2d, fix_dict = fix_dict, y_adjust = True, height=700, width=width_2d, spacing = spacing, path = docdir)
-
+# var_name = ['dent']
+# plot_content = 'Stationary Densities'
+# generateMomentPlots(status, plot_results_slice, var_name, plot_content, parameter_list, fixed = fixed_values, fix_dict = fix_dict, z_adjust = True, height=700, width=width_3d, spacing = spacing, path = docdir)
+# plot_content = 'Stationary Densities' + ' 2d'
+# generateMomentPlots_2d(status, plot_results_slice_2d, var_name, plot_content, parameter_list, fixed = fixed_values_2d, fix_dict = fix_dict, y_adjust = True, height=700, width=width_2d, spacing = spacing, path = docdir)
+# plot_content = 'Marginal Stationary Densities'
+# generateMomentPlots(status, plot_results_density, var_name, plot_content, parameter_list, z_adjust = True, height=700, width=width_3d, spacing = spacing, path = docdir)
+# plot_content = 'Marginal Stationary Densities'+ ' 2d'
+# generateMomentPlots_2d(status, plot_results_density_2d, var_name, plot_content, parameter_list, y_adjust = True, height=700, width=width_3d, spacing = spacing, path = docdir)
 
 if status == '0':
+  two_norm = []
+  sup_norm = []
+  two_norm_inner = []
+  sup_norm_inner = []
+  var_num = NN_variables_norm.shape[1]
+  for i in range(var_num):
+    two_norm.append(np.linalg.norm(NN_variables_norm.iloc[:,i]-MFR_variables_norm.iloc[:,i]))
+    sup_norm.append(np.linalg.norm(NN_variables_norm.iloc[:,i]-MFR_variables_norm.iloc[:,i], np.inf))
+    two_norm_inner.append(np.linalg.norm(NN_variables_norm_inner.iloc[:,i]-MFR_variables_norm_inner.iloc[:,i]))
+    sup_norm_inner.append(np.linalg.norm(NN_variables_norm_inner.iloc[:,i]-MFR_variables_norm_inner.iloc[:,i], np.inf))
+
+  norm = pd.DataFrame([two_norm,sup_norm,two_norm_inner,sup_norm_inner],columns = NN_variables_norm.columns,index = ['Two norm','Sup Norm','Interior Two Norm','Interior Sup Norm']).T
+  norm.to_csv(docdir + 'norm.csv')
+
   varibles_list = load_list.copy()
   [varibles_list.pop(varibles_list.index(i)) for i in ['HJB_E_NN','HJB_H_NN','kappa_min_NN']]
   varibles_list = [i[:-3] for i in varibles_list]
