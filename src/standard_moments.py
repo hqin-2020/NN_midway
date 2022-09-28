@@ -408,8 +408,20 @@ if status != '3':
 
     else:
         MFR_slice = []; MFR_slice_inner = []; MFR_first_moments = []; MFR_second_moments = []; MFR_slice_2d = []; MFR_first_moments_2d = []; MFR_second_moments_2d = []; MFR_marginal_density = []; MFR_marginal_density_2d = []
+        MFR_variables_norm = NN_variables_norm.copy()
+        MFR_variables_norm_inner = NN_variables_norm_inner.copy()
+        MFR_variables_norm['HJB_E'] = 0.0
+        MFR_variables_norm['HJB_H'] = 0.0
+        MFR_variables_norm_inner['HJB_E'] = 0.0
+        MFR_variables_norm_inner['HJB_H'] = 0.0
 else:
     MFR_slice = []; MFR_slice_inner = []; MFR_first_moments = []; MFR_second_moments = []; MFR_slice_2d = []; MFR_first_moments_2d = []; MFR_second_moments_2d = []; MFR_marginal_density = []; MFR_marginal_density_2d = []
+    MFR_variables_norm = NN_variables_norm.copy()
+    MFR_variables_norm_inner = NN_variables_norm_inner.copy()
+    MFR_variables_norm['HJB_E'] = 0.0
+    MFR_variables_norm['HJB_H'] = 0.0
+    MFR_variables_norm_inner['HJB_E'] = 0.0
+    MFR_variables_norm_inner['HJB_H'] = 0.0
 
 plot_results_slice = [MFR_slice, NN_slice]
 plot_results_slice_inner = [MFR_slice_inner, NN_slice_inner]
@@ -456,54 +468,54 @@ plot_contents = ['Log Experts Value Function',  'Log Households Value Function',
 # plot_content = 'Marginal Stationary Densities'+ ' 2d'
 # generateMomentPlots_2d(status, plot_results_density_2d, var_name, plot_content, parameter_list, y_adjust = True, height=700, width=width_3d, spacing = spacing, path = docdir)
 
-if status == '0':
-  two_norm = []
-  sup_norm = []
-  two_norm_inner = []
-  sup_norm_inner = []
-  var_num = NN_variables_norm.shape[1]
-  for i in range(var_num):
-    two_norm.append(np.linalg.norm(NN_variables_norm.iloc[:,i]-MFR_variables_norm.iloc[:,i]))
-    sup_norm.append(np.linalg.norm(NN_variables_norm.iloc[:,i]-MFR_variables_norm.iloc[:,i], np.inf))
-    two_norm_inner.append(np.linalg.norm(NN_variables_norm_inner.iloc[:,i]-MFR_variables_norm_inner.iloc[:,i]))
-    sup_norm_inner.append(np.linalg.norm(NN_variables_norm_inner.iloc[:,i]-MFR_variables_norm_inner.iloc[:,i], np.inf))
 
-  norm = pd.DataFrame([two_norm,sup_norm,two_norm_inner,sup_norm_inner],columns = NN_variables_norm.columns,index = ['Two norm','Sup Norm','Interior Two Norm','Interior Sup Norm']).T
-  norm.to_csv(docdir + 'norm.csv')
+two_norm = []
+sup_norm = []
+two_norm_inner = []
+sup_norm_inner = []
+var_num = NN_variables_norm.shape[1]
+for i in range(var_num):
+  two_norm.append(np.linalg.norm(NN_variables_norm.iloc[:,i]-MFR_variables_norm.iloc[:,i]))
+  sup_norm.append(np.linalg.norm(NN_variables_norm.iloc[:,i]-MFR_variables_norm.iloc[:,i], np.inf))
+  two_norm_inner.append(np.linalg.norm(NN_variables_norm_inner.iloc[:,i]-MFR_variables_norm_inner.iloc[:,i]))
+  sup_norm_inner.append(np.linalg.norm(NN_variables_norm_inner.iloc[:,i]-MFR_variables_norm_inner.iloc[:,i], np.inf))
 
-  varibles_list = load_list.copy()
-  [varibles_list.pop(varibles_list.index(i)) for i in ['HJB_E_NN','HJB_H_NN','kappa_min_NN']]
-  varibles_list = [i[:-3] for i in varibles_list]
+norm = pd.DataFrame([two_norm,sup_norm,two_norm_inner,sup_norm_inner],columns = NN_variables_norm.columns,index = ['Two norm','Sup Norm','Interior Two Norm','Interior Sup Norm']).T
+norm.to_csv(docdir + 'norm.csv')
 
-  if sigma_Vtilde_norm == 0:
-    varibles_list.pop(varibles_list.index('muVtilde'))
-    varibles_list.pop(varibles_list.index('sigmaVtilde'))
-  elif sigma_V_norm == 0:
-    varibles_list.pop(varibles_list.index('muV'))
-    varibles_list.pop(varibles_list.index('sigmaV'))
+varibles_list = load_list.copy()
+[varibles_list.pop(varibles_list.index(i)) for i in ['HJB_E_NN','HJB_H_NN','kappa_min_NN']]
+varibles_list = [i[:-3] for i in varibles_list]
 
-  norms = []
-  for variable in varibles_list:
-    if variable == 'sigmaK':
-      norms.append(np.linalg.norm(eval(variable+'_MFR')[:,0] - eval(variable+'_NN')[:,0]))
-    elif variable == 'sigmaZ':
-      norms.append(np.linalg.norm(eval(variable+'_MFR')[:,1] - eval(variable+'_NN')[:,1]))
-    elif variable == 'sigmaV':
-      norms.append(np.linalg.norm(eval(variable+'_MFR')[:,2] - eval(variable+'_NN')[:,2]))
-    elif variable == 'sigmaVtilde':
-      norms.append(np.linalg.norm(eval(variable+'_MFR')[:,2] - eval(variable+'_NN')[:,2]))
-    elif variable in ['sigmaQ','sigmaR','sigmaW','PiH','PiE']:
-      norms.append(np.linalg.norm(eval(variable+'_MFR') - eval(variable+'_NN')[:,0:3]))
-    elif variable in ['firstCoefsE','secondCoefsE','firstCoefsH','secondCoefsH']:
-      norms.append(np.linalg.norm(eval(variable+'_MFR').sum(axis=1) - eval(variable+'_NN')[:,0]))
-    else:
-      norms.append(np.linalg.norm(eval(variable+'_MFR').reshape([-1,1])- eval(variable+'_NN').reshape([-1,1])))
+if sigma_Vtilde_norm == 0:
+  varibles_list.pop(varibles_list.index('muVtilde'))
+  varibles_list.pop(varibles_list.index('sigmaVtilde'))
+elif sigma_V_norm == 0:
+  varibles_list.pop(varibles_list.index('muV'))
+  varibles_list.pop(varibles_list.index('sigmaV'))
+
+  # norms = []
+  # for variable in varibles_list:
+  #   if variable == 'sigmaK':
+  #     norms.append(np.linalg.norm(eval(variable+'_MFR')[:,0] - eval(variable+'_NN')[:,0]))
+  #   elif variable == 'sigmaZ':
+  #     norms.append(np.linalg.norm(eval(variable+'_MFR')[:,1] - eval(variable+'_NN')[:,1]))
+  #   elif variable == 'sigmaV':
+  #     norms.append(np.linalg.norm(eval(variable+'_MFR')[:,2] - eval(variable+'_NN')[:,2]))
+  #   elif variable == 'sigmaVtilde':
+  #     norms.append(np.linalg.norm(eval(variable+'_MFR')[:,2] - eval(variable+'_NN')[:,2]))
+  #   elif variable in ['sigmaQ','sigmaR','sigmaW','PiH','PiE']:
+  #     norms.append(np.linalg.norm(eval(variable+'_MFR') - eval(variable+'_NN')[:,0:3]))
+  #   elif variable in ['firstCoefsE','secondCoefsE','firstCoefsH','secondCoefsH']:
+  #     norms.append(np.linalg.norm(eval(variable+'_MFR').sum(axis=1) - eval(variable+'_NN')[:,0]))
+  #   else:
+  #     norms.append(np.linalg.norm(eval(variable+'_MFR').reshape([-1,1])- eval(variable+'_NN').reshape([-1,1])))
   
-  norms.append(np.linalg.norm(HJB_E_NN-np.zeros(HJB_E_NN.shape)))
-  norms.append(np.linalg.norm(HJB_H_NN-np.zeros(HJB_H_NN.shape)))
-  norms.append(np.linalg.norm(kappa_min_NN-np.zeros(kappa_min_NN.shape)))
-  [varibles_list.append(i) for i in ['HJB_E','HJB_H','kappa_min']]
-  norms = pd.DataFrame([varibles_list, norms]).T
-  norms.columns = ['Variables','Norms']
-  norms.set_index('Variables')
-  norms.to_csv(docdir + 'norms.csv')
+  # norms.append(np.linalg.norm(HJB_E_NN-np.zeros(HJB_E_NN.shape)))
+  # norms.append(np.linalg.norm(HJB_H_NN-np.zeros(HJB_H_NN.shape)))
+  # norms.append(np.linalg.norm(kappa_min_NN-np.zeros(kappa_min_NN.shape)))
+  # [varibles_list.append(i) for i in ['HJB_E','HJB_H','kappa_min']]
+  # norms = pd.DataFrame([varibles_list, norms]).T
+  # norms.columns = ['Variables','Norms']
+  # norms.set_index('Variables')
+  # norms.to_csv(docdir + 'norms.csv')
