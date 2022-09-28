@@ -1,0 +1,62 @@
+/tmp/slurmd/job22833476/slurm_script: line 19: deactivate: No such file or directory
+Iteration 0
+Elapsed time for kappa 272.7527 sec
+Elapsed time for experts 113.2811 sec
+Elapsed time for households 103.4678 sec
+Iteration 1
+Elapsed time for kappa 219.0573 sec
+Elapsed time for experts 105.7615 sec
+Elapsed time for households 98.8114 sec
+Iteration 2
+Elapsed time for kappa 225.2425 sec
+Elapsed time for experts 105.1030 sec
+Elapsed time for households 10.9723 sec
+Iteration 3
+Elapsed time for kappa 219.9724 sec
+Elapsed time for experts 103.4705 sec
+Elapsed time for households 98.9562 sec
+Iteration 4
+Elapsed time for kappa 218.0619 sec
+Elapsed time for experts 105.0001 sec
+Elapsed time for households 99.8911 sec
+Iteration 5
+Elapsed time for kappa 222.1296 sec
+Elapsed time for experts 103.7910 sec
+Elapsed time for households 99.4743 sec
+Iteration 6
+Elapsed time for kappa 219.5234 sec
+Elapsed time for experts 103.9117 sec
+Elapsed time for households 98.7733 sec
+Iteration 7
+Elapsed time for kappa 219.7672 sec
+Elapsed time for experts 103.7372 sec
+Elapsed time for households 105.6407 sec
+Iteration 8
+Elapsed time for kappa 219.7501 sec
+Elapsed time for experts 105.0399 sec
+Elapsed time for households 100.4326 sec
+Iteration 9
+Elapsed time for kappa 218.0535 sec
+Elapsed time for experts 103.7481 sec
+Elapsed time for households 100.2890 sec
+Iteration 10
+Elapsed time for kappa 220.3534 sec
+Elapsed time for experts 102.7719 sec
+Elapsed time for households 102.2440 sec
+Iteration 11
+Elapsed time for kappa 217.4324 sec
+Elapsed time for experts 103.5760 sec
+Elapsed time for households 99.2284 sec
+Iteration 12
+Elapsed time for kappa 216.0080 sec
+Elapsed time for experts 103.2735 sec
+Elapsed time for households 99.8407 sec
+Iteration 13
+Elapsed time for kappa 223.9523 sec
+Elapsed time for experts 104.2549 sec
+Elapsed time for households 103.0929 sec
+Iteration 14
+Elapsed time for kappa 219.8050 sec
+Elapsed time for experts 104.2776 sec
+Elapsed time for households 101.5715 sec
+Elapsed time for training 6346.5403 sec

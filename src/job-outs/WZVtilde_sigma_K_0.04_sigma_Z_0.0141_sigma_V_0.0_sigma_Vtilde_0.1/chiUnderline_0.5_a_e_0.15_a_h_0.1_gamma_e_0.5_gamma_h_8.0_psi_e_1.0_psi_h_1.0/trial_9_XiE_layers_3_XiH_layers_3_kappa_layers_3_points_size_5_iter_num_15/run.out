@@ -1,0 +1,62 @@
+/tmp/slurmd/job22844466/slurm_script: line 19: deactivate: No such file or directory
+Iteration 0
+Elapsed time for kappa 273.8995 sec
+Elapsed time for experts 121.7118 sec
+Elapsed time for households 112.3794 sec
+Iteration 1
+Elapsed time for kappa 228.8784 sec
+Elapsed time for experts 116.3874 sec
+Elapsed time for households 47.5467 sec
+Iteration 2
+Elapsed time for kappa 225.6162 sec
+Elapsed time for experts 112.3646 sec
+Elapsed time for households 51.6016 sec
+Iteration 3
+Elapsed time for kappa 218.9726 sec
+Elapsed time for experts 108.7793 sec
+Elapsed time for households 22.1804 sec
+Iteration 4
+Elapsed time for kappa 220.9126 sec
+Elapsed time for experts 112.2366 sec
+Elapsed time for households 32.8800 sec
+Iteration 5
+Elapsed time for kappa 218.9735 sec
+Elapsed time for experts 106.6204 sec
+Elapsed time for households 91.5449 sec
+Iteration 6
+Elapsed time for kappa 217.6968 sec
+Elapsed time for experts 110.0088 sec
+Elapsed time for households 27.7735 sec
+Iteration 7
+Elapsed time for kappa 229.5063 sec
+Elapsed time for experts 110.9537 sec
+Elapsed time for households 26.4461 sec
+Iteration 8
+Elapsed time for kappa 217.4628 sec
+Elapsed time for experts 108.6628 sec
+Elapsed time for households 30.4234 sec
+Iteration 9
+Elapsed time for kappa 218.4364 sec
+Elapsed time for experts 109.9251 sec
+Elapsed time for households 24.6619 sec
+Iteration 10
+Elapsed time for kappa 214.5522 sec
+Elapsed time for experts 109.0020 sec
+Elapsed time for households 29.1814 sec
+Iteration 11
+Elapsed time for kappa 219.5634 sec
+Elapsed time for experts 108.7426 sec
+Elapsed time for households 58.9954 sec
+Iteration 12
+Elapsed time for kappa 224.5218 sec
+Elapsed time for experts 109.8753 sec
+Elapsed time for households 66.7875 sec
+Iteration 13
+Elapsed time for kappa 219.0948 sec
+Elapsed time for experts 110.4453 sec
+Elapsed time for households 106.7727 sec
+Iteration 14
+Elapsed time for kappa 219.5672 sec
+Elapsed time for experts 108.3378 sec
+Elapsed time for households 42.1819 sec
+Elapsed time for training 5804.0106 sec

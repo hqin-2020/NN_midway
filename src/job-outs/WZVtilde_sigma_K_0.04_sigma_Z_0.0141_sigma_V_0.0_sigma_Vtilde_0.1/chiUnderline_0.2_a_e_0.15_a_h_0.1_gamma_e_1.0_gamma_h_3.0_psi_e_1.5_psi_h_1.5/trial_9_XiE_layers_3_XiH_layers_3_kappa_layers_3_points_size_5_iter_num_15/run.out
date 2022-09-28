@@ -1,0 +1,62 @@
+/tmp/slurmd/job22844522/slurm_script: line 19: deactivate: No such file or directory
+Iteration 0
+Elapsed time for kappa 338.6095 sec
+Elapsed time for experts 151.1638 sec
+Elapsed time for households 134.5276 sec
+Iteration 1
+Elapsed time for kappa 266.2058 sec
+Elapsed time for experts 141.9282 sec
+Elapsed time for households 128.9767 sec
+Iteration 2
+Elapsed time for kappa 267.8136 sec
+Elapsed time for experts 141.3564 sec
+Elapsed time for households 126.7307 sec
+Iteration 3
+Elapsed time for kappa 262.4545 sec
+Elapsed time for experts 136.8888 sec
+Elapsed time for households 127.4396 sec
+Iteration 4
+Elapsed time for kappa 271.8235 sec
+Elapsed time for experts 141.1322 sec
+Elapsed time for households 41.7706 sec
+Iteration 5
+Elapsed time for kappa 259.5844 sec
+Elapsed time for experts 139.2036 sec
+Elapsed time for households 47.5060 sec
+Iteration 6
+Elapsed time for kappa 258.3721 sec
+Elapsed time for experts 137.1802 sec
+Elapsed time for households 63.4372 sec
+Iteration 7
+Elapsed time for kappa 262.8356 sec
+Elapsed time for experts 142.0876 sec
+Elapsed time for households 129.1739 sec
+Iteration 8
+Elapsed time for kappa 255.0691 sec
+Elapsed time for experts 138.6106 sec
+Elapsed time for households 127.0640 sec
+Iteration 9
+Elapsed time for kappa 247.3506 sec
+Elapsed time for experts 137.1692 sec
+Elapsed time for households 11.2105 sec
+Iteration 10
+Elapsed time for kappa 258.9990 sec
+Elapsed time for experts 140.4322 sec
+Elapsed time for households 130.5974 sec
+Iteration 11
+Elapsed time for kappa 254.4777 sec
+Elapsed time for experts 141.3362 sec
+Elapsed time for households 128.4494 sec
+Iteration 12
+Elapsed time for kappa 256.9277 sec
+Elapsed time for experts 144.8056 sec
+Elapsed time for households 17.6910 sec
+Iteration 13
+Elapsed time for kappa 119.8034 sec
+Elapsed time for experts 12.4018 sec
+Elapsed time for households 132.2234 sec
+Iteration 14
+Elapsed time for kappa 121.8404 sec
+Elapsed time for experts 142.2175 sec
+Elapsed time for households 130.5243 sec
+Elapsed time for training 7168.5465 sec

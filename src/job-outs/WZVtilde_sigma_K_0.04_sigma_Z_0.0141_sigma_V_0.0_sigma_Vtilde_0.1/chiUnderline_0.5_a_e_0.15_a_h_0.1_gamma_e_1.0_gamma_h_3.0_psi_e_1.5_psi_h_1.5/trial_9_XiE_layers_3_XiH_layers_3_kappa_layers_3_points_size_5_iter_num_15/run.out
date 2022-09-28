@@ -1,0 +1,62 @@
+/tmp/slurmd/job22844506/slurm_script: line 19: deactivate: No such file or directory
+Iteration 0
+Elapsed time for kappa 306.6636 sec
+Elapsed time for experts 144.5812 sec
+Elapsed time for households 135.7885 sec
+Iteration 1
+Elapsed time for kappa 246.7334 sec
+Elapsed time for experts 127.2310 sec
+Elapsed time for households 125.4211 sec
+Iteration 2
+Elapsed time for kappa 244.7147 sec
+Elapsed time for experts 134.5340 sec
+Elapsed time for households 125.1802 sec
+Iteration 3
+Elapsed time for kappa 248.2378 sec
+Elapsed time for experts 131.6369 sec
+Elapsed time for households 125.0420 sec
+Iteration 4
+Elapsed time for kappa 249.3658 sec
+Elapsed time for experts 133.0206 sec
+Elapsed time for households 125.5780 sec
+Iteration 5
+Elapsed time for kappa 244.9952 sec
+Elapsed time for experts 130.8196 sec
+Elapsed time for households 125.9898 sec
+Iteration 6
+Elapsed time for kappa 252.7181 sec
+Elapsed time for experts 131.8033 sec
+Elapsed time for households 127.0029 sec
+Iteration 7
+Elapsed time for kappa 237.2788 sec
+Elapsed time for experts 125.4098 sec
+Elapsed time for households 130.7188 sec
+Iteration 8
+Elapsed time for kappa 234.6345 sec
+Elapsed time for experts 127.3896 sec
+Elapsed time for households 121.1643 sec
+Iteration 9
+Elapsed time for kappa 238.5073 sec
+Elapsed time for experts 127.6422 sec
+Elapsed time for households 114.8709 sec
+Iteration 10
+Elapsed time for kappa 171.4114 sec
+Elapsed time for experts 125.2106 sec
+Elapsed time for households 120.6542 sec
+Iteration 11
+Elapsed time for kappa 157.3588 sec
+Elapsed time for experts 124.7900 sec
+Elapsed time for households 122.7217 sec
+Iteration 12
+Elapsed time for kappa 111.8665 sec
+Elapsed time for experts 128.3804 sec
+Elapsed time for households 124.8390 sec
+Iteration 13
+Elapsed time for kappa 250.9031 sec
+Elapsed time for experts 133.1954 sec
+Elapsed time for households 128.4839 sec
+Iteration 14
+Elapsed time for kappa 218.3770 sec
+Elapsed time for experts 135.0360 sec
+Elapsed time for households 132.0246 sec
+Elapsed time for training 7261.1233 sec
