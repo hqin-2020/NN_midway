@@ -69,10 +69,16 @@ def generateMomentPlots(status, plot_results, var_name, plot_content, parameter_
               title_x = 0.5, title_y = 0.97, height=height, width=width, title_yanchor = 'top')
     fig.update_layout(margin=dict(t=150))
     if fixed ==None:
-      fig.write_json(path + '/' + plot_content + '.json')
+      if z_adjust == True:
+        fig.write_json(path + '/' + plot_content + '.json')
+      else:
+        fig.write_json(path + '/' + plot_content + ' unadjusted.json')
     else:
       dict_name = ' '.join([i + ' '  + str(fix_dict[i]) for i in fix_dict])
-      fig.write_json(path + '/' + plot_content + ' ' + dict_name +'.json')
+      if z_adjust == True:
+        fig.write_json(path + '/' + plot_content + ' ' + dict_name +'.json')
+      else:
+        fig.write_json(path + '/' + plot_content + ' ' + dict_name +' unadjusted.json')
 
 def generateMomentPlots_2d(status, plot_results, var_name, plot_content, parameter_list, fixed = None, fix_dict = None, y_adjust = True, float_formatter = "{0:.4f}", height=800, width=1200, spacing = 0.1, path = os.path.dirname(os.getcwd()) + '/doc/'):
     
@@ -130,11 +136,17 @@ def generateMomentPlots_2d(status, plot_results, var_name, plot_content, paramet
               ', a_e = ' + str(a_e) + ', a_h = ' + str(a_h) + ', gamma_e = ' + str(gamma_e) + ', gamma_h = ' +str(gamma_h) + ', psi_e = ' + str(psi_e) + ', psi_h = ' + str(psi_h) +'</span>',\
               title_x = 0.5, title_y = 0.97, height=height, width=width, title_yanchor = 'top')
     fig.update_layout(margin=dict(t=150))
-    if fixed ==None:
-      fig.write_json(path + '/' + plot_content + '.json')
+    if fixed == None:
+      if y_adjust == True:
+        fig.write_json(path + '/' + plot_content + '.json')
+      else:
+        fig.write_json(path + '/' + plot_content + ' unadjusted.json')
     else:
       dict_name = ' '.join([i + ' '  + str(fix_dict[i]) for i in fix_dict])
-      fig.write_json(path + '/' + plot_content + ' ' + dict_name +'.json')
+      if y_adjust == True:
+        fig.write_json(path + '/' + plot_content + ' ' + dict_name +'.json')
+      else:
+        fig.write_json(path + '/' + plot_content + ' ' + dict_name +' unadjusted.json')
 
 # def generateSurfacePlots(domain_folder, status, plot_results, fixed_points, X, function_name, var_name, plot_content, parameter_list, z_adjust = True, float_formatter = "{0:.4f}", height=800, width=1200, path = os.path.dirname(os.getcwd()) + '/doc/'):
     
