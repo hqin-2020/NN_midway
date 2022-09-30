@@ -51,7 +51,7 @@ do
                             mkdir -p ./job-outs/$domain_folder/$model_folder
                             mkdir -p ./bash/$domain_folder/$model_folder
 
-                            for points_size in 5
+                            for points_size in 2
                             do
                                 for iter_num in 200
                                 do                                                                                                
