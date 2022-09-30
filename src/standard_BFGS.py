@@ -130,7 +130,7 @@ units = 16
 activation = 'tanh'
 kernel_initializer = 'glorot_normal'
 
-BFGS_maxiter  = 500
+BFGS_maxiter  = 50
 BFGS_maxfun   = 50000
 BFGS_gtol     = 1.0 * np.finfo(float).eps
 BFGS_maxcor   = 100
