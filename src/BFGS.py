@@ -137,23 +137,98 @@ BFGS_maxcor   = 100
 BFGS_maxls    = 100
 BFGS_ftol     = 1.0 * np.finfo(float).eps
 
+predir = srcdir + '/pre_chiUnderline_0500_a_e_0140_a_h_0135_gamma_e_1000_gamma_h_1000_psi_e_1000_psi_h_1000/'
+logXiH_NN_tf = tf.saved_model.load(predir   + 'logXiH_NN')
+logXiE_NN_tf = tf.saved_model.load(predir   + 'logXiE_NN')
+kappa_NN_tf = tf.saved_model.load(predir    + 'kappa_NN')
+
+
+def kappa_NN_tf_kernel_0(shape, dtype=None):
+    return kappa_NN_tf.trainable_variables[0] 
+def kappa_NN_tf_bias_0(shape, dtype=None):
+    return kappa_NN_tf.trainable_variables[1] 
+def kappa_NN_tf_kernel_1(shape, dtype=None):
+    return kappa_NN_tf.trainable_variables[2] 
+def kappa_NN_tf_bias_1(shape, dtype=None):
+    return kappa_NN_tf.trainable_variables[3] 
+def kappa_NN_tf_kernel_2(shape, dtype=None):
+    return kappa_NN_tf.trainable_variables[4] 
+def kappa_NN_tf_bias_2(shape, dtype=None):
+    return kappa_NN_tf.trainable_variables[5] 
+def kappa_NN_tf_kernel_3(shape, dtype=None):
+    return kappa_NN_tf.trainable_variables[6] 
+def kappa_NN_tf_bias_3(shape, dtype=None):
+    return kappa_NN_tf.trainable_variables[7] 
+
+def logXiE_NN_tf_kernel_0(shape, dtype=None):
+    return logXiE_NN_tf.trainable_variables[0]
+def logXiE_NN_tf_bias_0(shape, dtype=None):
+    return logXiE_NN_tf.trainable_variables[1]
+def logXiE_NN_tf_kernel_1(shape, dtype=None):
+    return logXiE_NN_tf.trainable_variables[2]
+def logXiE_NN_tf_bias_1(shape, dtype=None):
+    return logXiE_NN_tf.trainable_variables[3]
+def logXiE_NN_tf_kernel_2(shape, dtype=None):
+    return logXiE_NN_tf.trainable_variables[4]
+def logXiE_NN_tf_bias_2(shape, dtype=None):
+    return logXiE_NN_tf.trainable_variables[5]
+def logXiE_NN_tf_kernel_3(shape, dtype=None):
+    return logXiE_NN_tf.trainable_variables[6]
+def logXiE_NN_tf_bias_3(shape, dtype=None):
+    return logXiE_NN_tf.trainable_variables[7]
+
+def logXiH_NN_tf_kernel_0(shape, dtype=None):
+    return logXiH_NN_tf.trainable_variables[0]
+def logXiH_NN_tf_bias_0(shape, dtype=None):
+    return logXiH_NN_tf.trainable_variables[1]
+def logXiH_NN_tf_kernel_1(shape, dtype=None):
+    return logXiH_NN_tf.trainable_variables[2]
+def logXiH_NN_tf_bias_1(shape, dtype=None):
+    return logXiH_NN_tf.trainable_variables[3]
+def logXiH_NN_tf_kernel_2(shape, dtype=None):
+    return logXiH_NN_tf.trainable_variables[4]
+def logXiH_NN_tf_bias_2(shape, dtype=None):
+    return logXiH_NN_tf.trainable_variables[5]
+def logXiH_NN_tf_kernel_3(shape, dtype=None):
+    return logXiH_NN_tf.trainable_variables[6]
+def logXiH_NN_tf_bias_3(shape, dtype=None):
+    return logXiH_NN_tf.trainable_variables[7]
+
 ## NN structure
 tf.keras.backend.set_floatx("float64") ## Use float64 by default
 
 logXiE_NN = tf.keras.Sequential(
     [tf.keras.Input(shape=[dimension,]),
       ####### XiE structure #######
-      tf.keras.layers.Dense(1,  activation= None,  kernel_initializer='glorot_normal')])
+      # tf.keras.layers.Dense(1,  activation= None,  kernel_initializer='glorot_normal')])
+      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kappa_NN_tf_kernel_0, bias_initializer=kappa_NN_tf_bias_0),
+      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kappa_NN_tf_kernel_1, bias_initializer=kappa_NN_tf_bias_1),
+      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kappa_NN_tf_kernel_2, bias_initializer=kappa_NN_tf_bias_2),
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kernel_initializer),
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kernel_initializer),
+      tf.keras.layers.Dense(1,  activation= None,  kernel_initializer=kappa_NN_tf_kernel_3, bias_initializer=kappa_NN_tf_bias_3)])
 
 logXiH_NN = tf.keras.Sequential(
     [tf.keras.Input(shape=[dimension,]),
       ####### XiH structure #######
-      tf.keras.layers.Dense(1,  activation= None , kernel_initializer='glorot_normal')])
+      # tf.keras.layers.Dense(1,  activation= None , kernel_initializer='glorot_normal')])
+      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiE_NN_tf_kernel_0, bias_initializer=logXiE_NN_tf_bias_0),
+      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiE_NN_tf_kernel_1, bias_initializer=logXiE_NN_tf_bias_1),
+      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiE_NN_tf_kernel_2, bias_initializer=logXiE_NN_tf_bias_2),
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kernel_initializer),
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kernel_initializer),
+      tf.keras.layers.Dense(1,  activation= None , kernel_initializer=logXiE_NN_tf_kernel_3, bias_initializer=logXiE_NN_tf_bias_3)])
 
 kappa_NN = tf.keras.Sequential(
     [tf.keras.Input(shape=[dimension,]),
       ####### kappa structure #######
-      tf.keras.layers.Dense(1,  activation='sigmoid', kernel_initializer='glorot_normal')])
+      # tf.keras.layers.Dense(1,  activation='sigmoid', kernel_initializer='glorot_normal')])
+      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiH_NN_tf_kernel_0, bias_initializer=logXiH_NN_tf_bias_0),
+      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiH_NN_tf_kernel_1, bias_initializer=logXiH_NN_tf_bias_1),
+      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiH_NN_tf_kernel_2, bias_initializer=logXiH_NN_tf_bias_2),
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kernel_initializer),
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kernel_initializer),
+      tf.keras.layers.Dense(1,  activation='sigmoid', kernel_initializer=logXiH_NN_tf_kernel_3, bias_initializer=logXiH_NN_tf_bias_3)])
 
 ## Training
 start = time.time()

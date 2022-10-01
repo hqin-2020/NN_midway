@@ -22,5 +22,5 @@ lines[i:i+1] = [layer for i in range(XiH_layers)]
 i = lines.index('      ####### kappa structure #######\n') 
 lines[i:i+1] = [layer for i in range(kappa_NN_layers)]
 
-with open(srcdir + '/standard_BFGS.py', 'w') as f:
-    f.writelines(lines)
+# with open(srcdir + '/standard_BFGS.py', 'w') as f:
+#     f.writelines(lines)
