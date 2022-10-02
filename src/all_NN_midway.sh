@@ -33,15 +33,15 @@ else
     mkdir -p ./bash/$domain_folder
 fi
 
-for chiUnderline in 1.0
+for chiUnderline in 0.5 1.0 0.2
 do 
-    for a_e in 0.14
+    for a_e in 0.15
     do
-        for a_h in 0.135
+        for a_h in 0.1 0.05
         do
             for gamma_e in 1.0
             do
-                for gamma_h in 1.0
+                for gamma_h in 3.0
                 do
                     for psi_e in 0.5 1.5
                     do
@@ -51,9 +51,9 @@ do
                             mkdir -p ./job-outs/$domain_folder/$model_folder
                             mkdir -p ./bash/$domain_folder/$model_folder
 
-                            for points_size in 2
+                            for points_size in 20
                             do
-                                for iter_num in 200
+                                for iter_num in 300
                                 do                                                                                                
                                     for XiE_layers in 3
                                     do 
@@ -81,17 +81,17 @@ do
 #SBATCH --output=./job-outs/$domain_folder/$model_folder/$layer_folder/runtd.out
 #SBATCH --error=./job-outs/$domain_folder/$model_folder/$layer_folder/runtd.err
 #SBATCH --time=0-24:00:00
-#SBATCH --partition=gpu2
-#SBATCH --gres=gpu:1
+#SBATCH --partition=broadwl
+#SBATCH --nodes=1
 #SBATCH --cpus-per-task=14
-#SBATCH --mem=64G
+#SBATCH --mem=56G
 
-module load python/anaconda-2021.05
-module load cuda/11.2
 module load tensorflow/2.1
+module unload python
+module load python/anaconda-2021.05
 
 python3 NN_structure.py    --XiE_layers ${XiE_layers} --XiH_layers ${XiH_layers} --kappa_layers ${kappa_layers}
-python3 standard_BFGS.py   --chiUnderline ${chiUnderline} --a_e ${a_e} --a_h ${a_h} --gamma_e ${gamma_e} --gamma_h ${gamma_h} --psi_e ${psi_e} --psi_h ${psi_h} --nWealth ${nWealth} --nZ ${nZ} --nV ${nV} --nVtilde ${nVtilde} --V_bar ${V_bar} --Vtilde_bar ${Vtilde_bar} --sigma_V_norm ${sigma_V_norm} --sigma_Vtilde_norm ${sigma_Vtilde_norm} --XiE_layers ${XiE_layers} --XiH_layers ${XiH_layers} --kappa_layers ${kappa_layers} --weight1 ${weight1} --boundary1 ${boundary1} --weight2 ${weight2} --boundary2 ${boundary2} --points_size ${points_size} --iter_num ${iter_num} --trial ${trial} --chi_position_tolerance ${chi_position_tolerance} --chi_value_tolerance ${chi_value_tolerance} --chi_max_iterations ${chi_max_iterations} --W_fix ${W_fix} --Z_fix ${Z_fix} --V_fix ${V_fix} --Vtilde_fix ${Vtilde_fix} 
+python3 standard_BFGS.py   --chiUnderline ${chiUnderline} --a_e ${a_e} --a_h ${a_h} --gamma_e ${gamma_e} --gamma_h ${gamma_h} --psi_e ${psi_e} --psi_h ${psi_h} --nWealth ${nWealth} --nZ ${nZ} --nV ${nV} --nVtilde ${nVtilde} --V_bar ${V_bar} --Vtilde_bar ${Vtilde_bar} --sigma_V_norm ${sigma_V_norm} --sigma_Vtilde_norm ${sigma_Vtilde_norm} --XiE_layers ${XiE_layers} --XiH_layers ${XiH_layers} --kappa_layers ${kappa_layers} --weight1 ${weight1} --boundary1 ${boundary1} --weight2 ${weight2} --boundary2 ${boundary2} --points_size ${points_size} --iter_num ${iter_num} --trial ${trial} --chi_position_tolerance ${chi_position_tolerance} --chi_value_tolerance ${chi_value_tolerance} --chi_max_iterations ${chi_max_iterations} --W_fix ${W_fix} --Z_fix ${Z_fix} --V_fix ${V_fix} --Vtilde_fix ${Vtilde_fix}
 python3 standard_variable.py   --chiUnderline ${chiUnderline} --a_e ${a_e} --a_h ${a_h} --gamma_e ${gamma_e} --gamma_h ${gamma_h} --psi_e ${psi_e} --psi_h ${psi_h} --nWealth ${nWealth} --nZ ${nZ} --nV ${nV} --nVtilde ${nVtilde} --V_bar ${V_bar} --Vtilde_bar ${Vtilde_bar} --sigma_V_norm ${sigma_V_norm} --sigma_Vtilde_norm ${sigma_Vtilde_norm} --XiE_layers ${XiE_layers} --XiH_layers ${XiH_layers} --kappa_layers ${kappa_layers} --weight1 ${weight1} --boundary1 ${boundary1} --weight2 ${weight2} --boundary2 ${boundary2} --points_size ${points_size} --iter_num ${iter_num} --trial ${trial} --chi_position_tolerance ${chi_position_tolerance} --chi_value_tolerance ${chi_value_tolerance} --chi_max_iterations ${chi_max_iterations} --W_fix ${W_fix} --Z_fix ${Z_fix} --V_fix ${V_fix} --Vtilde_fix ${Vtilde_fix}
 python3 standard_moments.py   --chiUnderline ${chiUnderline} --a_e ${a_e} --a_h ${a_h} --gamma_e ${gamma_e} --gamma_h ${gamma_h} --psi_e ${psi_e} --psi_h ${psi_h} --nWealth ${nWealth} --nZ ${nZ} --nV ${nV} --nVtilde ${nVtilde} --V_bar ${V_bar} --Vtilde_bar ${Vtilde_bar} --sigma_V_norm ${sigma_V_norm} --sigma_Vtilde_norm ${sigma_Vtilde_norm} --XiE_layers ${XiE_layers} --XiH_layers ${XiH_layers} --kappa_layers ${kappa_layers} --weight1 ${weight1} --boundary1 ${boundary1} --weight2 ${weight2} --boundary2 ${boundary2} --points_size ${points_size} --iter_num ${iter_num} --trial ${trial} --chi_position_tolerance ${chi_position_tolerance} --chi_value_tolerance ${chi_value_tolerance} --chi_max_iterations ${chi_max_iterations} --W_fix ${W_fix} --Z_fix ${Z_fix} --V_fix ${V_fix} --Vtilde_fix ${Vtilde_fix} 
 

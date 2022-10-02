@@ -130,7 +130,7 @@ units = 16
 activation = 'tanh'
 kernel_initializer = 'glorot_normal'
 
-BFGS_maxiter  = 50
+BFGS_maxiter  = 30
 BFGS_maxfun   = 50000
 BFGS_gtol     = 1.0 * np.finfo(float).eps
 BFGS_maxcor   = 100
@@ -200,35 +200,35 @@ tf.keras.backend.set_floatx("float64") ## Use float64 by default
 logXiE_NN = tf.keras.Sequential(
     [tf.keras.Input(shape=[dimension,]),
       ####### XiE structure #######
-      # tf.keras.layers.Dense(1,  activation= None,  kernel_initializer='glorot_normal')])
-      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kappa_NN_tf_kernel_0, bias_initializer=kappa_NN_tf_bias_0),
-      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kappa_NN_tf_kernel_1, bias_initializer=kappa_NN_tf_bias_1),
-      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kappa_NN_tf_kernel_2, bias_initializer=kappa_NN_tf_bias_2),
+      tf.keras.layers.Dense(1,  activation= None,  kernel_initializer='glorot_normal')])
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kappa_NN_tf_kernel_0, bias_initializer=kappa_NN_tf_bias_0),
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kappa_NN_tf_kernel_1, bias_initializer=kappa_NN_tf_bias_1),
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kappa_NN_tf_kernel_2, bias_initializer=kappa_NN_tf_bias_2),
       # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kernel_initializer),
       # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kernel_initializer),
-      tf.keras.layers.Dense(1,  activation= None,  kernel_initializer=kappa_NN_tf_kernel_3, bias_initializer=kappa_NN_tf_bias_3)])
+      # tf.keras.layers.Dense(1,  activation= None,  kernel_initializer=kappa_NN_tf_kernel_3, bias_initializer=kappa_NN_tf_bias_3)])
 
 logXiH_NN = tf.keras.Sequential(
     [tf.keras.Input(shape=[dimension,]),
       ####### XiH structure #######
-      # tf.keras.layers.Dense(1,  activation= None , kernel_initializer='glorot_normal')])
-      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiE_NN_tf_kernel_0, bias_initializer=logXiE_NN_tf_bias_0),
-      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiE_NN_tf_kernel_1, bias_initializer=logXiE_NN_tf_bias_1),
-      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiE_NN_tf_kernel_2, bias_initializer=logXiE_NN_tf_bias_2),
+      tf.keras.layers.Dense(1,  activation= None , kernel_initializer='glorot_normal')])
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiE_NN_tf_kernel_0, bias_initializer=logXiE_NN_tf_bias_0),
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiE_NN_tf_kernel_1, bias_initializer=logXiE_NN_tf_bias_1),
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiE_NN_tf_kernel_2, bias_initializer=logXiE_NN_tf_bias_2),
       # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kernel_initializer),
       # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kernel_initializer),
-      tf.keras.layers.Dense(1,  activation= None , kernel_initializer=logXiE_NN_tf_kernel_3, bias_initializer=logXiE_NN_tf_bias_3)])
+      # tf.keras.layers.Dense(1,  activation= None , kernel_initializer=logXiE_NN_tf_kernel_3, bias_initializer=logXiE_NN_tf_bias_3)])
 
 kappa_NN = tf.keras.Sequential(
     [tf.keras.Input(shape=[dimension,]),
       ####### kappa structure #######
-      # tf.keras.layers.Dense(1,  activation='sigmoid', kernel_initializer='glorot_normal')])
-      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiH_NN_tf_kernel_0, bias_initializer=logXiH_NN_tf_bias_0),
-      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiH_NN_tf_kernel_1, bias_initializer=logXiH_NN_tf_bias_1),
-      tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiH_NN_tf_kernel_2, bias_initializer=logXiH_NN_tf_bias_2),
+      tf.keras.layers.Dense(1,  activation='sigmoid', kernel_initializer='glorot_normal')])
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiH_NN_tf_kernel_0, bias_initializer=logXiH_NN_tf_bias_0),
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiH_NN_tf_kernel_1, bias_initializer=logXiH_NN_tf_bias_1),
+      # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=logXiH_NN_tf_kernel_2, bias_initializer=logXiH_NN_tf_bias_2),
       # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kernel_initializer),
       # tf.keras.layers.Dense(units, activation=activation, kernel_initializer=kernel_initializer),
-      tf.keras.layers.Dense(1,  activation='sigmoid', kernel_initializer=logXiH_NN_tf_kernel_3, bias_initializer=logXiH_NN_tf_bias_3)])
+      # tf.keras.layers.Dense(1,  activation='sigmoid', kernel_initializer=logXiH_NN_tf_kernel_3, bias_initializer=logXiH_NN_tf_bias_3)])
 
 ## Training
 start = time.time()
